@@ -1,0 +1,9 @@
+{
+	"name": "adfcopybulktables",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "32a5c313-0992-41e8-9f8a-54a53c3be376",
+		"tenantId": "57084445-e440-441f-bc3f-fabe8cbb2535"
+	}
+}
