@@ -1,0 +1,24 @@
+{
+	"name": "AzureBlobExcelOutputDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageCopyFileLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "UserDataCopy.txt",
+				"folderPath": "OutPutFiles",
+				"container": "maincontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

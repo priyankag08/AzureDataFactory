@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "PipelineToCopyDataFromBlobToSQLServer",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "CopyDataFromBlobToSQLServer",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -204,6 +204,239 @@
 				"outputs": [
 					{
 						"referenceName": "SqlServerTableDS",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "CopyDataFromSQLServerToAzureSQL",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "CopyDataFromBlobToSQLServer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "upsert",
+						"upsertSettings": {
+							"useTempDB": true,
+							"keys": [
+								"FName",
+								"LName",
+								"Phone1"
+							]
+						},
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FirstName",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "FName"
+								}
+							},
+							{
+								"source": {
+									"name": "LastName",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "LName"
+								}
+							},
+							{
+								"source": {
+									"name": "CompanyName",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Company_Name"
+								}
+							},
+							{
+								"source": {
+									"name": "Address",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Address"
+								}
+							},
+							{
+								"source": {
+									"name": "City",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "City"
+								}
+							},
+							{
+								"source": {
+									"name": "Country",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Country"
+								}
+							},
+							{
+								"source": {
+									"name": "State",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "State"
+								}
+							},
+							{
+								"source": {
+									"name": "Zip",
+									"physicalType": "int",
+									"precision": 10
+								},
+								"sink": {
+									"name": "Zip",
+									"precision": 10
+								}
+							},
+							{
+								"source": {
+									"name": "Phone1",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Phone1"
+								}
+							},
+							{
+								"source": {
+									"name": "Phone2",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Phone2"
+								}
+							},
+							{
+								"source": {
+									"name": "Email",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Email"
+								}
+							},
+							{
+								"source": {
+									"name": "Web",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "Web"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTableDS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTableDS",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "CopyDataFromSQLServerToBlob",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "CopyDataFromSQLServerToAzureSQL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTableDS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureBlobExcelOutputDS",
 						"type": "DatasetReference"
 					}
 				]
