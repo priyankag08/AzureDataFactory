@@ -1,7 +1,0 @@
-{
-	"name": "SelfHostedIR",
-	"properties": {
-		"type": "SelfHosted",
-		"description": "Self Hosted IR to use my on premises SQL DB"
-	}
-}
