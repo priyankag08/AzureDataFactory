@@ -1,0 +1,9 @@
+{
+	"name": "adfcopydatafromblobtossms",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f9a3ecca-ce7f-4001-9c8b-a8f922cfdbcf",
+		"tenantId": "57084445-e440-441f-bc3f-fabe8cbb2535"
+	}
+}
