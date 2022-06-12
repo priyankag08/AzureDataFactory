@@ -10,8 +10,8 @@
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "integrated security=False;data source=TMGLAP269;initial catalog=@{linkedService().DBName};user id=Rohit",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4YTcyMGYzYy1kYjk0LTRkNmItYWM1ZS1kODU5MjAxNGMyMDYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "integrated security=False;data source=TMGLAP269;initial catalog=demo;user id=Rohit",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0N2UyZTM5YS05NWY2LTQ0YmYtYWEyYy0zMDU3OGU3MWNkOTQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "SelfHostedIR",
