@@ -1,0 +1,85 @@
+{
+	"name": "SourceFileDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": "SourceFolder",
+				"container": "maincontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "name",
+				"type": "String"
+			},
+			{
+				"name": "year",
+				"type": "String"
+			},
+			{
+				"name": "selling_price",
+				"type": "String"
+			},
+			{
+				"name": "km_driven",
+				"type": "String"
+			},
+			{
+				"name": "fuel",
+				"type": "String"
+			},
+			{
+				"name": "seller_type",
+				"type": "String"
+			},
+			{
+				"name": "transmission",
+				"type": "String"
+			},
+			{
+				"name": "owner",
+				"type": "String"
+			},
+			{
+				"name": "mileage",
+				"type": "String"
+			},
+			{
+				"name": "engine",
+				"type": "String"
+			},
+			{
+				"name": "max_power",
+				"type": "String"
+			},
+			{
+				"name": "torque",
+				"type": "String"
+			},
+			{
+				"name": "seats",
+				"type": "String"
+			}
+		]
+	}
+}

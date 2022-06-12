@@ -1,0 +1,81 @@
+{
+	"name": "AzureSqlTableDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"DestinationTableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "year",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "selling_price",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "km_driven",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "fuel",
+				"type": "varchar"
+			},
+			{
+				"name": "seller_type",
+				"type": "varchar"
+			},
+			{
+				"name": "transmission",
+				"type": "varchar"
+			},
+			{
+				"name": "owner",
+				"type": "varchar"
+			},
+			{
+				"name": "mileage",
+				"type": "varchar"
+			},
+			{
+				"name": "engine",
+				"type": "varchar"
+			},
+			{
+				"name": "max_power",
+				"type": "varchar"
+			},
+			{
+				"name": "torque",
+				"type": "varchar"
+			},
+			{
+				"name": "seats",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().DestinationTableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
