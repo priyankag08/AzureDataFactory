@@ -1,11 +1,18 @@
 {
-	"name": "CopyBulkDataFromBlobToAzureSQLPipeline",
+	"name": "Copy_Bulk_Tables_From_Blob_To_AzureSQL_Using_Only_2_DataSets_Pipeline",
 	"properties": {
 		"activities": [
 			{
 				"name": "CopyDataActivity",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "CSVBackupActivity",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -207,6 +214,76 @@
 						"parameters": {
 							"DestinationTableName": {
 								"value": "@pipeline().parameters.DestinationTableNamePipeline",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "CSVBackupActivity",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceFileDS",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@pipeline().parameters.SourceFileNamePipeline",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SourceFileDS",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@concat(pipeline().parameters.SourceFileNamePipeline,'-',utcnow(),'.csv')",
 								"type": "Expression"
 							}
 						}
