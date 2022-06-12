@@ -23,8 +23,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"disableMetricsCollection": false
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -201,13 +200,7 @@
 				"outputs": [
 					{
 						"referenceName": "AzureSqlTableDS",
-						"type": "DatasetReference",
-						"parameters": {
-							"tableNameDS": {
-								"value": "@pipeline().parameters.TableNamePipeline",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
