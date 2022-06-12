@@ -1,0 +1,24 @@
+{
+	"name": "SqlServerTablePipeline2DataSet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableNameDS": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().TableNameDS",
+				"type": "Expression"
+			}
+		}
+	}
+}

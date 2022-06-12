@@ -1,0 +1,22 @@
+{
+	"name": "Copy_Bulk_Tables_From_SQLServer_To_AzureSQL_With_Backup_On_Blob",
+	"properties": {
+		"description": "Task :\n1. Take a backup of all tables from SQL Server to Blob\n2. Copy bulk tables from SQL Server to Azure SQL",
+		"activities": [
+			{
+				"name": "Table List",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
+			}
+		],
+		"annotations": []
+	}
+}
