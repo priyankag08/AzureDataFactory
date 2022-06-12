@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "CopyDataActivity",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -16,28 +16,15 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "SqlServerSink",
-						"writeBehavior": "upsert",
-						"upsertSettings": {
-							"useTempDB": true,
-							"keys": [
-								"FirstName",
-								"LastName",
-								"Phone1"
-							]
-						},
-						"sqlWriterUseTableLock": false
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -197,18 +184,42 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureBlobDS",
-						"type": "DatasetReference"
+						"referenceName": "SqlServerTableDS",
+						"type": "DatasetReference",
+						"parameters": {
+							"DBNameDS": {
+								"value": "@pipeline().parameters.DBNamePipeline",
+								"type": "Expression"
+							},
+							"TableNameDS": {
+								"value": "@pipeline().parameters.TableNamePipeline",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "SqlServerTableDS",
-						"type": "DatasetReference"
+						"referenceName": "AzureSqlTableDS",
+						"type": "DatasetReference",
+						"parameters": {
+							"tableNameDS": {
+								"value": "@pipeline().parameters.TableNamePipeline",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"DBNamePipeline": {
+				"type": "string"
+			},
+			"TableNamePipeline": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
