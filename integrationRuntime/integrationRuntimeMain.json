@@ -1,0 +1,12 @@
+{
+	"name": "integrationRuntimeMain",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/22a805df-4191-445f-befe-b715f2eba430/resourcegroups/Priya/providers/Microsoft.DataFactory/factories/adfsyncproject/integrationruntimes/SelfHostedIntegrationRuntime",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}
