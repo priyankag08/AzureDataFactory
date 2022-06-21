@@ -16,7 +16,7 @@
 		"type": "SqlServer",
 		"typeProperties": {
 			"connectionString": "integrated security=False;data source=@{linkedService().Server};initial catalog=@{linkedService().DBName};user id=sa",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiZDA1MGY0ZC00ODUzLTQyYTgtOWYzYS0yYWEyN2E0MjZkNWYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkNzgxYzMzZC0zZjA4LTQwMmYtOWUzYy03NjQyZmVjZmMzYjkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntimeMain",
