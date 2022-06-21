@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference",
 			"parameters": {
 				"DBName": "ADFDB",
-				"Server": "AZ-VDI-D1-262"
+				"Server": "AZ-VDI-D1-267"
 			}
 		},
 		"parameters": {
