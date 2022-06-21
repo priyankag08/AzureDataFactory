@@ -5,16 +5,19 @@
 		"parameters": {
 			"DBName": {
 				"type": "String"
+			},
+			"Server": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "integrated security=False;data source=TMGLAP269;initial catalog=@{linkedService().DBName};user id=Rohit",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4YTcyMGYzYy1kYjk0LTRkNmItYWM1ZS1kODU5MjAxNGMyMDYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "integrated security=False;data source=@{linkedService().Server};initial catalog=@{linkedService().DBName};user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyZDU0NjljNy04YzkwLTRhZDYtOWMxYi1iOWQzNGFmZGY5MTIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
-			"referenceName": "SelfHostedIR",
+			"referenceName": "integrationRuntimeMain",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
